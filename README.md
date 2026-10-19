@@ -30,21 +30,40 @@ Clock / Reset ───>│ [ d_ff.sv ] (Sequential Synchronization)     │
 
 ---
 
-## Synthesis & Hardware Bring-Up
+## Functional Verification & Waveform Analysis
 
-* **Target Device:** Altera Cyclone IV E FPGA
-* **EDA Toolchain:** Intel Quartus Prime & ModelSim
-* **I/O Pin Mapping (`FPGA_Dungeon_Game.qsf`):** Constrains physical package pins to tactile pushbuttons for player inputs, onboard slide switches for system control, and active-high LEDs / 7-segment displays for room tracking and status flags.
-* **Timing & Functional Simulation:** Validated via vector waveform simulation (`Waveform.vwf`) to guarantee hazard-free state propagation before flashing bitstreams via JTAG.
+The state machine transitions were functionally validated against both victory and failure paths using vector waveforms before flashing to silicon:
+
+### Victory State Path (Sword Acquired)
+![Win Condition Waveform](waveform_win.png)
+*Demonstrates input sequencing navigating room branches, latching the item flag in `sword.sv`, and triggering the victory state.*
+
+### Failure / Game Over Path
+![Lose Condition Waveform](waveform_lose.png)
+*Validates hazard detection and transition to the terminal defeat state when entering Dragon's Den without the sword.*
+
+---
+
+## Physical Hardware Bring-Up (Cyclone IV FPGA)
+
+The design was compiled in Intel Quartus Prime, mapped to package pins via `FPGA_Dungeon_Game.qsf`, and verified on bench hardware using tactile pushbuttons for directional inputs, slide switches for system reset, and LEDs for room/sword status decoding.
+
+### Hardware Walkthrough & Bench Test
+
+<!-- DRAG AND DROP YOUR .MP4 VIDEO FILE RIGHT HERE -->
+
+*Hardware bench walkthrough demonstrating state transitions from Cave through Rapid River into Dragon's Den, highlighting unlatched sword flag death-state handling and hardware reset.*
 
 ---
 
 ## Repository Structure
 
 * `game.sv` — Top-level structural SystemVerilog module
-* `room.sv` — Navigation finite state machine module
+* `room.sv` — Navigation finite state machine module (Cave, Tunnel, River, Dragon's Den)
 * `sword.sv` — Item acquisition and persistence state machine
 * `d_ff.sv` — Custom D flip-flop sequential storage primitive
 * `FPGA_Dungeon_Game.qpf` — Intel Quartus Prime project configuration file
 * `FPGA_Dungeon_Game.qsf` — Physical pin assignments and device hardware constraints
 * `Waveform.vwf` — Simulation vector waveform stimulus
+* `waveform_win.png` — Functional simulation output for the victory branch
+* `waveform_lose.png` — Functional simulation output for the defeat branch
