@@ -1,6 +1,20 @@
 # Hierarchical FSM Adventure Game Controller (Cyclone IV FPGA)
 
+<p align="left">
+  <img src="https://img.shields.io/badge/HDL-SystemVerilog-1b365d?style=for-the-badge&logo=code" alt="SystemVerilog">
+  <img src="https://img.shields.io/badge/EDA-Intel_Quartus_Prime-0071c5?style=for-the-badge&logo=intel" alt="Intel Quartus Prime">
+  <img src="https://img.shields.io/badge/Target_Silicon-Cyclone_IV_EP4CE-green?style=for-the-badge" alt="Target FPGA">
+  <img src="https://img.shields.io/badge/Physical_Bringup-Verified-success?style=for-the-badge" alt="Bringup Status">
+</p>
+
+
 A modular, multi-tier digital finite state machine system designed in SystemVerilog, synthesized using Intel Quartus Prime, and physically verified on an Altera Cyclone IV E FPGA development board.
+
+| Target Hardware | Verification Pipeline | Architecture Style |
+| :--- | :--- | :--- |
+| **Altera Cyclone IV E** | ModelSim / Quartus Vector Waveform | Hierarchical Multi-FSM |
+| **Pushbutton Debouncing** | Physical Oscilloscope / Logic Testing | Synchronous RTL (`d_ff.sv`) |
+| **Onboard LED Bus** | Board-Level Bench Demonstration | Explicit Item-State Latch |
 
 ---
 
@@ -27,7 +41,7 @@ Inputs ──────>│ [ Filter / Debounce ]               │
 Clock/Reset ─>│ [ d_ff.sv ] (State Registers)       │
               └─────────────────────────────────────┘
 ```
-
+---
 ## Functional Verification & Waveform Analysis
 
 The state machine transitions were functionally validated against both victory and failure paths using vector waveforms before flashing to silicon:
@@ -49,6 +63,7 @@ The state machine transitions were functionally validated against both victory a
 
 The design was compiled in Intel Quartus Prime, mapped to package pins via `FPGA_Dungeon_Game.qsf`, and verified on bench hardware using tactile pushbuttons for directional inputs, slide switches for system reset, and LEDs for room/sword status decoding.
 
+---
 ### Hardware Walkthrough & Bench Test
 
 
