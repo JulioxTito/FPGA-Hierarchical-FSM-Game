@@ -35,14 +35,18 @@ Clock / Reset ───>│ [ d_ff.sv ] (Sequential Synchronization)     │
 The state machine transitions were functionally validated against both victory and failure paths using vector waveforms before flashing to silicon:
 
 ### Victory State Path (Sword Acquired)
-![Win Condition Waveform](waveform_win.png)
-*Demonstrates input sequencing navigating room branches, latching the item flag in `sword.sv`, and triggering the victory state.*
+<p align="center">
+  <img src="waveform_win.png" alt="Win Condition Waveform" width="55%">
+  <br>
+  <em>Demonstrates input sequencing navigating room branches, latching the item flag in <code>sword.sv</code>, and triggering the victory state.</em>
+</p>
 
 ### Failure / Game Over Path
-![Lose Condition Waveform](waveform_lose.png)
-*Validates hazard detection and transition to the terminal defeat state when entering Dragon's Den without the sword.*
-
----
+<p align="center">
+  <img src="waveform_lose.png" alt="Lose Condition Waveform" width="55%">
+  <br>
+  <em>Validates hazard detection and transition to the terminal defeat state when entering Dragon's Den without the sword.</em>
+</p>
 
 ## Physical Hardware Bring-Up (Cyclone IV FPGA)
 
@@ -50,7 +54,7 @@ The design was compiled in Intel Quartus Prime, mapped to package pins via `FPGA
 
 ### Hardware Walkthrough & Bench Test
 
-<video src="FPGA_test.mp4" controls width="100%"></video>
+[<video src="FPGA_test.mp4" controls width="100%"></video>](https://github.com/user-attachments/assets/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
 
 *Hardware bench walkthrough demonstrating state transitions from Cave through Rapid River into Dragon's Den, highlighting unlatched sword flag death-state handling and hardware reset.*
 
