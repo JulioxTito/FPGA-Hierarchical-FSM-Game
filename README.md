@@ -11,24 +11,22 @@ The system decomposes an interactive text/dungeon navigation game into decoupled
 * **Top-Level Orchestration (`game.sv`):** Integrates directional inputs, clock dividers, sequential primitives, and child state machines into a cohesive datapath.
 * **Navigation FSM (`room.sv`):** Implements positional room-to-room transitions across the map based on directional player movement inputs (North, South, East, West).
 * **Item Persistence Subsystem (`sword.sv`):** Governs inventory state latching, ensuring acquired items (such as the sword) persist across subsequent room transitions and trigger valid win conditions.
-* **Custom Sequential Primitives (`d_ff.sv`):** Employs explicit edge-triggered D flip-flop register stages to synchronize asynchronous player inputs and preserve state stability.
+* **Custom Sequential Primitives (`d_ff.sv`):** Employs explicit edge-triggered **D flip-flop** register stages to synchronize asynchronous player inputs and preserve state stability.
 * **Input Conditioning & Glitch Filtering:** Combinatorial logic designed to filter illegal simultaneous button presses and transient input spikes from mechanical switches.
 
 ```
-                  ┌──────────────────────────────────────────────┐
-                  │                 game.sv                      │
-                  │                                              │
-Player Inputs ───>│ [ Input Filtering / Debounce ]               │
-(Pushbuttons)     │   │                                          │
-                  │   ├──> [ room.sv ] (Navigation FSM) ────────>│──> Room Status LEDs
-                  │   │        │                                 │
-                  │   └──> [ sword.sv ] (Persistence FSM) ──────>│──> Item / Win Indicators
-                  │                                              │
-Clock / Reset ───>│ [ d_ff.sv ] (Sequential Synchronization)     │
-                  └──────────────────────────────────────────────┘
+              ┌─────────────────────────────────────┐
+              │               game.sv               │
+              │                                     │
+Inputs ──────>│ [ Filter / Debounce ]               │
+(Pushbuttons) │   │                                 │
+              │   ├──> [ room.sv ] (Nav FSM) ──────>│──> Room LEDs
+              │   │        │                        │
+              │   └──> [ sword.sv ] (Item FSM) ────>│──> Win / Status LEDs
+              │                                     │
+Clock/Reset ─>│ [ d_ff.sv ] (State Registers)       │
+              └─────────────────────────────────────┘
 ```
-
----
 
 ## Functional Verification & Waveform Analysis
 
