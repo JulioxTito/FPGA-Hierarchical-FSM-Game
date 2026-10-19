@@ -34,18 +34,17 @@ The state machine transitions were functionally validated against both victory a
 
 ### Victory State Path (Sword Acquired)
 <p align="center">
-  <img src="waveform_win.png" alt="Win Condition Waveform" width="55%">
+  <img src="media/waveform_win.png" alt="Win Condition Waveform" width="50%">
   <br>
   <em>Demonstrates input sequencing navigating room branches, latching the item flag in <code>sword.sv</code>, and triggering the victory state.</em>
 </p>
 
 ### Failure / Game Over Path
 <p align="center">
-  <img src="waveform_lose.png" alt="Lose Condition Waveform" width="55%">
+  <img src="media/waveform_lose.png" alt="Lose Condition Waveform" width="50%">
   <br>
   <em>Validates hazard detection and transition to the terminal defeat state when entering Dragon's Den without the sword.</em>
 </p>
-
 ## Physical Hardware Bring-Up (Cyclone IV FPGA)
 
 The design was compiled in Intel Quartus Prime, mapped to package pins via `FPGA_Dungeon_Game.qsf`, and verified on bench hardware using tactile pushbuttons for directional inputs, slide switches for system reset, and LEDs for room/sword status decoding.
