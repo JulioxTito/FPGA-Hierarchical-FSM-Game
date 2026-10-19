@@ -54,7 +54,11 @@ The design was compiled in Intel Quartus Prime, mapped to package pins via `FPGA
 
 ### Hardware Walkthrough & Bench Test
 
-[<video src="FPGA_test.mp4" controls width="100%"></video>](https://github.com/user-attachments/assets/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+
+
+https://github.com/user-attachments/assets/db463974-3549-4f10-8f24-018ba212ab43
+
+
 
 *Hardware bench walkthrough demonstrating state transitions from Cave through Rapid River into Dragon's Den, highlighting unlatched sword flag death-state handling and hardware reset.*
 
